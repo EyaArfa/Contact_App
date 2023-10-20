@@ -1,0 +1,36 @@
+name: callapp
+description: A new Flutter project.
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=2.19.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_secure_storage: ^8.1.0
+  font_awesome_flutter: ^10.4.0
+  image_picker: ^1.0.4
+  lottie: ^2.3.2
+  url_launcher: ^6.1.11
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/lottie/
+    - assets/images/
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: fonts/OpenSans/static/OpenSans_SemiCondensed-Bold.ttf
+          weight: 700
+        - asset: fonts/OpenSans/static/OpenSans_SemiCondensed-Regular.ttf
+    - family: YougSerif
+      fonts:
+        - asset: fonts/YoungSerif/YoungSerif-Regular.ttf
