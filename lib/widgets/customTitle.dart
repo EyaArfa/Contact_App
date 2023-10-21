@@ -5,8 +5,12 @@ import '../usefull/constants.dart';
 class CustomTitle extends StatelessWidget {
   final String text;
   final double bottom, top;
-
-  CustomTitle(this.text, {super.key, required this.bottom, required this.top});
+  final Color color;
+  CustomTitle(this.text,
+      {super.key,
+      required this.bottom,
+      required this.top,
+      this.color = strokeTextColor});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +18,9 @@ class CustomTitle extends StatelessWidget {
       padding: EdgeInsets.only(bottom: bottom, top: top),
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           fontFamily: 'OpenSans',
-          color: strokeTextColor,
+          color: color,
           fontWeight: FontWeight.bold,
           fontSize: 30,
         ),
