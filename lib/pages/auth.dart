@@ -60,7 +60,6 @@ class _AuthenticateState extends State<Authenticate> {
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
-                        // height: double.infinity,
                         child: Expanded(
                           child: SingleChildScrollView(
                             child: Column(
