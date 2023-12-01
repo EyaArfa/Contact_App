@@ -56,7 +56,7 @@ class _AuthenticateState extends State<Authenticate> {
                     child: ClipPath(
                       clipper: CustomClipperPath(),
                       child: Container(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(35),
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),

@@ -1,10 +1,7 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:callapp/pages/auth.dart';
 import 'package:callapp/pages/home.dart';
+import 'package:callapp/services/sqlite_serice.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:lottie/lottie.dart';
 
@@ -21,18 +18,19 @@ class _SplashScreenState extends State<SplashScreen>
   bool isLogged = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     checkLoggedIn();
+
     _controller = AnimationController(
-      duration: Duration(seconds: (5)),
+      duration: const Duration(seconds: (5)),
       vsync: this,
     );
   }
 
   checkLoggedIn() async {
-    final storage = new FlutterSecureStorage();
+    final storage = FlutterSecureStorage();
     String? name = await storage.read(key: 'name');
+    print(name);
     if (name != null) {
       setState(() {
         isLogged = true;
@@ -42,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.brown[50],
       body: Center(

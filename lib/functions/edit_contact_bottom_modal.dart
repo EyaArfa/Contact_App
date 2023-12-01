@@ -1,14 +1,18 @@
+import 'dart:io';
+
 import 'package:callapp/Models/Conatct.dart';
 import 'package:callapp/usefull/constants.dart';
 import 'package:callapp/widgets/customButton.dart';
 import 'package:callapp/widgets/customTextField.dart';
 import 'package:callapp/widgets/customTitle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'validator.dart';
 
 Future<dynamic> editContactModalBottomSheet(
-    BuildContext context,
+    BuildContext context,Contact user,
     TextEditingController txtNameController,
     TextEditingController txtLastController,
     TextEditingController txtPhoneController,
@@ -42,12 +46,104 @@ Future<dynamic> editContactModalBottomSheet(
                         Padding(
                           padding: const EdgeInsets.only(bottom: 10),
                           child: Stack(children: [
-                            avatarColor,
+                            user.image == null
+                                ? avatarColor
+                                : ClipOval(
+                              child: Image.file(
+                                user.image!,
+                                width: 160,
+                                height: 160,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                             Positioned(
                               bottom: 15,
                               right: 20,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) => Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: [
+                                        InkWell(
+                                          focusColor: Colors.black26,
+                                          onTap: () async {
+                                            try {
+                                              final img =
+                                              await ImagePicker()
+                                                  .pickImage(
+                                                  source: ImageSource
+                                                      .gallery);
+                                              File temp=File(img!.path);
+                                              if (img == null) {
+                                                return;
+                                              }
+                                              user.image=File(img.path);
+                                              Navigator.pop(context);
+
+
+
+                                            } on PlatformException catch (e) {
+                                              print(
+                                                  "failed to pick image");
+                                            }
+
+                                          },
+                                          child: Row(
+                                            children: const [
+                                              Padding(
+                                                padding:
+                                                EdgeInsets.all(
+                                                    8.0),
+                                                child: Icon(
+                                                    FontAwesomeIcons
+                                                        .images),
+                                              ),
+                                              Text(
+                                                  "Pick from Gallery")
+                                            ],
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () async {
+                                            try {
+                                              final img =
+                                              await ImagePicker()
+                                                  .pickImage(
+                                                  source: ImageSource
+                                                      .camera);
+                                              if (img == null) {
+                                                return;
+                                              }
+                                              user.image=File(img.path);
+
+                                            } on PlatformException catch (e) {
+                                              print(
+                                                  "failed to pick image");
+                                            }
+                                            Navigator.pop(context);
+                                          },
+                                          child: Row(
+                                            children: const [
+                                              Padding(
+                                                padding:
+                                                EdgeInsets.all(
+                                                    8.0),
+                                                child: Icon(
+                                                    FontAwesomeIcons
+                                                        .camera),
+                                              ),
+                                              Text("Open Camera")
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
                                 child: const Icon(
                                     color: strokeTextColor,
                                     Icons.camera_alt_rounded),

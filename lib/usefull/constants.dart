@@ -13,7 +13,7 @@ const deviderColor = Color.fromARGB(128, 22, 93, 104);
 const darkColor = Color.fromARGB(255, 29, 104, 115);
 const errorColor = Color.fromARGB(255, 158, 42, 44);
 CircleAvatar avatarColor = CircleAvatar(
-  backgroundColor: Colors.amber[100],
+  backgroundColor: Colors.grey[100],
   radius: 60,
 );
 const decorationSearch = BoxDecoration(
