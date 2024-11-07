@@ -1,3 +1,3 @@
 # callapp
 
-A new Flutter project.
+A school Flutter project involves creating a contact repository.
